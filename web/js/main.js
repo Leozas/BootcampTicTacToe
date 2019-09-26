@@ -46,18 +46,26 @@ container
 
 // UI creation
 
-// atoms+molecules
-var createDiv = document.createElement('div')
-var createPlaceholder;
 
 
-var createDiv = document.body.createElement("div");document.body.createElement("div").setAttribute("class","container")
-// gameboard organism
-// document.body.createElement('div')
-create divrow
-createdivcol
-createdivcontainer
+// 
+function createBoard(toAdd) {
+    var board = document.createElement("div");
+    for (var i = 0; i < 3; i++) {
+        var newRow = document.createElement("div");
+        newRow.id = 'Tac' + i;
+        newRow.className = 'row';
 
-for (var i = 0; i < 3; i++){
-    For
+
+        for (var j = 0; j < 3; j++) {
+            var newCol = document.createElement("div");
+            newCol.id = 'TIC' + j;
+            newCol.innerHTML = "BOO";
+            newCol.className = 'col-4 border';
+            newRow.appendChild(newCol);
+        }
+        board.appendChild(newRow);
+    }
+    
+    toAdd.appendChild(board);
 }
