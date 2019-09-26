@@ -47,7 +47,17 @@ container
 // UI creation
 
 // atoms+molecules
-var createDiv = document.body.createElement("div")
+var createDiv = document.createElement('div')
+var createPlaceholder;
 
+
+var createDiv = document.body.createElement("div");document.body.createElement("div").setAttribute("class","container")
 // gameboard organism
-document.body
+// document.body.createElement('div')
+create divrow
+createdivcol
+createdivcontainer
+
+for (var i = 0; i < 3; i++){
+    For
+}
