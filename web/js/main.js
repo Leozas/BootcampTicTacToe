@@ -40,45 +40,53 @@ container
 
 
 */
+// divApp inititalize
 var divApp = document.getElementById('#app');
 
-//createElement
-//setAttribute
+// container fluid
+var newContainerfluid = document.createElement("div");
+newContainerfluid.id = '';
+newContainerfluid.className = 'container-fluid';
+
+// row
+var newRow = document.createElement("div");
+newRow.id = 'row';
+newRow.className = 'row';
+
+// column
+var newColumn = document.createElement("div");
+newRow.id = '';
+newRow.className = '';
+
+// button
+var newRow = document.createElement("div");
+newBtn.id = 'reset';
+newRow.className = 'btn btn-primary';
+
+// h2 player text
+var newP = document.createElement("p")
+newP.id = "";
+newP.className = '';
+
+// column class array
+var columnClasses = ['col-0 col-sm-1 col-md-2 col-lg-3','col-12 col-sm-10 col-md-8 col-lg-6 border']
+
 //appendChild
 
 // UI creation
 
-
-
-//
-
-divApp
 function createBoard() {
-    // create big container fluid
-    var newContainerFluid = document.createElement("div")
-    newContainerFluid.id = ""
-    newContainerFluid.className = "container-fluid"
-    // overarching row
-    var newRow = document.createElement("div")
-    newRow.id = ""
-    newRow.className = "row"
+    for (var i = 0; i < 3; i++){
+     
+        for (var j = 0; j < 3; j++) {
+            newColumn.id = 'box' + j;
+            newColumn.className = columnClasses[2];
+            newRow.appendChild(newRow);
+        }
 
-
-    newRow.appendChild()
-    // make left boarder column
-
-    // make gameboard holding col
-    //make gameboard
-    // make right column
-    var newRow = document.createElement("div");
-    newRow.id = 'row' + i;
-    newRow.className = 'row';
-
+    }
 }
-function createButton() {
-
-
-}
+/*
 
 // gameboard + button but no multiple rows for turns/score 
 function createBoard(toAdd) {
@@ -122,4 +130,4 @@ function init() {
     button.appendChild(btn);
     container.appendChild(button);
     A.appendChild(container);
-}
+} */
