@@ -40,6 +40,8 @@ container
 
 
 */
+var divApp = document.getElementById('#app');
+
 //createElement
 //setAttribute
 //appendChild
@@ -48,24 +50,76 @@ container
 
 
 
-// 
+//
+
+divApp
+function createBoard() {
+    // create big container fluid
+    var newContainerFluid = document.createElement("div")
+    newContainerFluid.id = ""
+    newContainerFluid.className = "container-fluid"
+    // overarching row
+    var newRow = document.createElement("div")
+    newRow.id = ""
+    newRow.className = "row"
+
+
+    newRow.appendChild()
+    // make left boarder column
+
+    // make gameboard holding col
+    //make gameboard
+    // make right column
+    var newRow = document.createElement("div");
+    newRow.id = 'row' + i;
+    newRow.className = 'row';
+
+}
+function createButton() {
+
+
+}
+
+// gameboard + button but no multiple rows for turns/score 
 function createBoard(toAdd) {
     var board = document.createElement("div");
     for (var i = 0; i < 3; i++) {
         var newRow = document.createElement("div");
-        newRow.id = 'Tac' + i;
+        newRow.id = 'row' + i;
         newRow.className = 'row';
+
+        <div class="col-0 col-sm-1 col-md-2 col-lg-3"></div>
+            <div class="col-12 col-sm-10 col-md-8 col-lg-6"></div>
+            <div class="col-0 col-sm-1 col-md-2 col-lg-3"></div>
+
 
 
         for (var j = 0; j < 3; j++) {
             var newCol = document.createElement("div");
-            newCol.id = 'TIC' + j;
+            newCol.id = 'col' + j;
             newCol.innerHTML = "BOO";
             newCol.className = 'col-4 border';
             newRow.appendChild(newCol);
         }
         board.appendChild(newRow);
     }
-    
+
     toAdd.appendChild(board);
+}
+// ONLY FUNCS - CLEAN UP!
+function init() {
+    var container = document.createElement('div');
+    container.setAttribute('class', 'container');
+
+    createBoard(container);
+
+    var button = document.createElement('div');
+    button.setAttribute("class", "text-center");
+
+    var btn = document.createElement('button');
+    btn.innerHTML = 'Restart';
+
+    button.appendChild(btn);
+    container.appendChild(button);
+    A.appendChild(container);
 }
