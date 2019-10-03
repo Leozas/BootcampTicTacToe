@@ -15,18 +15,31 @@ needs:
 --->clear, playing, someone won
 */
 
+//vars
+// placeholder x and o
+var x = "x";
+var o = "o";
+var winner = "me!";
+var turn = "player1";
+var xwin = 0;
+var owin = 0;
+var boxarray = [];
+// testfunc
+function test(){
+
+    this.innerHTML =
+
+}
+
 
 // xo func
 function xo() {
 
 }
+function init() {
 
+    // UI creation
 
-// UI creation
-function createBoard() {
-    // placeholder x and o
-    var x = "x"
-    var o = "o
 
     // divApp inititalize
     var divApp = document.getElementById('app');
@@ -35,15 +48,16 @@ function createBoard() {
     //boxes 1-3
     var boxcolumn1 = document.createElement("div");
     boxcolumn1.id = 'box1';
-    boxcolumn1.className = 'col'
-    boxcolumn1.onclick = xo()
+    boxcolumn1.className = 'col border border-primary'
+    boxcolumn1.onclick = boxcolumn1.innerHTM
+    }
     var boxcolumn2 = document.createElement("div");
     boxcolumn2.id = 'box2';
-    boxcolumn2.className = 'col'
+    boxcolumn2.className = 'col border border-primary'
     boxcolumn2.onclick = xo()
     var boxcolumn3 = document.createElement("div");
     boxcolumn3.id = 'box3';
-    boxcolumn3.className = 'col'
+    boxcolumn3.className = 'col border border-primary'
     boxcolumn3.onclick = xo()
     // row 1 of tictactoe
     var boardrow1 = document.createElement("div");
@@ -57,15 +71,15 @@ function createBoard() {
     //boxes 4-6
     var boxcolumn4 = document.createElement("div");
     boxcolumn4.id = 'box4';
-    boxcolumn4.className = 'col'
+    boxcolumn4.className = 'col border border-primary'
     boxcolumn4.onclick = xo()
     var boxcolumn5 = document.createElement("div");
     boxcolumn5.id = 'box5';
-    boxcolumn5.className = 'col'
+    boxcolumn5.className = 'col border border-primary'
     boxcolumn5.onclick = xo()
     var boxcolumn6 = document.createElement("div");
     boxcolumn6.id = 'box6';
-    boxcolumn6.className = 'col'
+    boxcolumn6.className = 'col border border-primary'
     boxcolumn6.onclick = xo()
     // row 2 of tictactoe
     var boardrow2 = document.createElement("div");
@@ -80,15 +94,15 @@ function createBoard() {
     //boxes 7-9
     var boxcolumn7 = document.createElement("div");
     boxcolumn7.id = 'box7';
-    boxcolumn7.className = 'col';
+    boxcolumn7.className = 'col border border-primary';
     boxcolumn7.onclick = xo();
     var boxcolumn8 = document.createElement("div");
     boxcolumn8.id = 'box8';
-    boxcolumn8.className = 'col';
+    boxcolumn8.className = 'col border border-primary';
     boxcolumn8.onclick = xo();
     var boxcolumn9 = document.createElement("div");
     boxcolumn9.id = 'box9';
-    boxcolumn9.className = 'col';
+    boxcolumn9.className = 'col border border-primary';
     boxcolumn9.onclick = xo();
     // row 3 of tictactoe
     var boardrow3 = document.createElement("div");
@@ -99,34 +113,125 @@ function createBoard() {
     boardrow3.appendChild(boxcolumn8)
     boardrow3.appendChild(boxcolumn9)
 
-    //container col1 and 2
-    var boardcontainercol1 = document.createElement("div");
-    boardcontainercol1.id = '';
-    boardcontainercol1.className = 'col';
-    var boardcontainercol2 = document.createElement("div");
-    boardcontainercol2.id = '';
-    boardcontainercol2.className = 'col';
-    // row 2 of tictactoe
-    var boardrow2 = document.createElement("div");
-    boardrow2.id = 'boardrow2';
-    boardrow2.className = 'row';
+    //first col <div class="col-0 col-sm-1 col-md-2 col-lg-3"></div>
+    var firstcol = document.createElement("div")
+    firstcol.id = ""
+    firstcol.className = "col-0 col-sm-1 col-md-2 col-lg-3"
+    //middle row col-12 col-sm-10 col-md-8 col-lg-6
+    var maincol = document.createElement("div")
+    maincol.id = ""
+    maincol.className = "col-12 col-sm-10 col-md-8 col-lg-6"
+    //outer row <div class="col-0 col-sm-1 col-md-2 col-lg-3"></div>
+    var thirdcol = document.createElement("div")
+    thirdcol.id = ""
+    thirdcol.className = "col-0 col-sm-1 col-md-2 col-lg-3"
+
     //append rows 1-3 of board to col1 
-    boardcontainercol1.appendChild(boardrow1);
-    boardcontainercol1.appendChild(boardrow2);
-    boardcontainercol1.appendChild(boardrow3);
+    maincol.appendChild(boardrow1);
+    maincol.appendChild(boardrow2);
+    maincol.appendChild(boardrow3);
 
     // victory, turn, score texts
     var vicp = document.createElement("p")
     vicp.id = "victory";
     vicp.className = '';
     vicp.innerHTML = winner + " has won!"
+    vicp.display = "none"
     // vic row
     var boardrow4vic = document.createElement("div");
     boardrow4vic.id = 'boardrow4vic';
     boardrow4vic.className = 'row';
     boardrow4vic.appendChild(vicp)
 
+
+    // turn
+    var turnp = document.createElement("p")
+    turnp.id = "turn";
+    turnp.className = '';
+    turnp.innerHTML = "It is " + turn + "'s turn";
+    // turn row
+    var boardrow5turn = document.createElement("div");
+    boardrow5turn.id = 'boardrow5turn';
+    boardrow5turn.className = 'row';
+    boardrow5turn.appendChild(turnp)
+
+    // score
+    var scorep = document.createElement("p")
+    scorep.id = "score";
+    scorep.className = '';
+    scorep.innerHTML = "It is: " + xwin + ' to '+ owin;
+    // score row
+    var boardrow6score = document.createElement("div");
+    boardrow6score.id = 'boardrow6score';
+    boardrow6score.className = 'row';
+    boardrow6score.appendChild(scorep)
+
+    // reset+start+rules
+    //reset
+    var resetbtn = document.createElement("button");
+    resetbtn.id = 'reset';
+    resetbtn.className = 'btn btn-primary';
+
+    //start
+    var startbtn = document.createElement("button");
+    startbtn.id = 'start';
+    startbtn.className = 'btn btn-primary';
+
+    //rules
+    var rulesbtn = document.createElement("button");
+    rulesbtn.id = 'rules';
+    rulesbtn.className = 'btn btn-primary';
+
+    // btn row
+    var boardrow7btns = document.createElement("div");
+    boardrow6score.id = 'boardrow7btns';
+    boardrow7btns.className = 'row';
+    boardrow7btns.appendChild(resetbtn)
+    boardrow7btns.appendChild(startbtn)
+    boardrow7btns.appendChild(rulesbtn)
+
+    //append all rows to col
+    maincol.appendChild(boardrow4vic);
+    maincol.appendChild(boardrow5turn);
+    maincol.appendChild(boardrow6score);
+    maincol.appendChild(boardrow7btns);
+
+    // big row
+    var bigrow = document.createElement("div");
+    bigrow.id = "";
+    bigrow.class = "row";
+    bigrow.appendChild(firstcol);
+    bigrow.appendChild(maincol);
+    bigrow.appendChild(thirdcol);
+
+    // container fluid
+    var Containerfluid = document.createElement("div");
+    Containerfluid.id = '';
+    Containerfluid.className = 'container-fluid';
+    Containerfluid.appendChild(bigrow)
+
+
+    // divApp inititalize
+    var divApp = document.getElementById('app');
+    divApp.appendChild(Containerfluid);
+
+    resetbtn.innerHTML = "Reset"
+    startbtn.innerHTML = "Start"
+    rulesbtn.innerHTML = "Rules"
+
+    boxcolumn1.innerHTML = "box1"
+    boxcolumn2.innerHTML = "box2"
+    boxcolumn3.innerHTML = "box3"
+    boxcolumn4.innerHTML = "box4"
+    boxcolumn5.innerHTML = "box5"
+    boxcolumn6.innerHTML = "box6"
+    boxcolumn7.innerHTML = "box7"
+    boxcolumn8.innerHTML = "box8"
+    boxcolumn9.innerHTML = "box9"
+
+
 }
+
 
 
 
@@ -139,7 +244,7 @@ function createBoard() {
 var columnClasses = ['col-0 col-sm-1 col-md-2 col-lg-3', 'col-12 col-sm-10 col-md-8 col-lg-6 border']
 
 divApp.appendChild( newrow(),
-                    newrow(
+
                         newcol(
                             newrow(
                                 newcol(), newcol(),newcol()
@@ -147,8 +252,6 @@ divApp.appendChild( newrow(),
                                 newcol(), newcol(),newcol()
                             newrow(
                                 newcol(), newcol(),newcol()
-                            )
-                        newcol(
                             newrow(victory text)
                             newrow(turn text)
                             newrow(score text)
