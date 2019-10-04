@@ -19,23 +19,50 @@ needs:
 // placeholder x and o
 var x = "x";
 var o = "o";
+var xstate = 1
+var ostate = 2
+var nostate = 0
 var winner = "me!";
 var turn = "player1";
+var turnval = 0
 var xwin = 0;
 var owin = 0;
-var boxarray = [];
-// testfunc
-function test(){
-
-    this.innerHTML =
-
-}
+var boxarray = [0,0,0,0,0,0,0,0,0];
+var winsconditions = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
 
 
-// xo func
+
+// xo print func
 function xo() {
-
+    var boxcoord = this.id.split("boxcolumn");
+    var i = Number(boxcoord[1])
+    var currentValue = boxarray[i];
+    if (currentValue == nostate) {
+        // even = x odd = o
+        turnval++;                 
+       if (currentTurn % 2) {
+            this.innerHTML = "x";
+            turnp.innerHTML = "O's turn!";
+        boxarray[i] = xstate;
+        } else {
+            this.innerHTML = "o";
+            tunp.innerHTML = "X's turn!";
+            boxarray[i] = ostate;
+        }
+        checkWin();
+    }
 }
+// check winconditions
+function checkwin() {
+    for (var i = 0; i < wins.length; i++) {
+        var winner = checkValue(wins[i][0], wins[i][1], wins[i][2]);
+        if (winner) {
+           vicp.innerHTML = "Player " + winner + " WINS!";
+            break;
+        }
+    }
+}
+
 function init() {
 
     // UI creation
@@ -49,16 +76,15 @@ function init() {
     var boxcolumn1 = document.createElement("div");
     boxcolumn1.id = 'box1';
     boxcolumn1.className = 'col border border-primary'
-    boxcolumn1.onclick = boxcolumn1.innerHTM
-    }
+    boxcolumn1.addEventListener('click', xo);   
     var boxcolumn2 = document.createElement("div");
     boxcolumn2.id = 'box2';
     boxcolumn2.className = 'col border border-primary'
-    boxcolumn2.onclick = xo()
+    boxcolumn2.addEventListener('click', xo);
     var boxcolumn3 = document.createElement("div");
     boxcolumn3.id = 'box3';
     boxcolumn3.className = 'col border border-primary'
-    boxcolumn3.onclick = xo()
+    boxcolumn3.addEventListener('click', xo);
     // row 1 of tictactoe
     var boardrow1 = document.createElement("div");
     boardrow1.id = 'boardrow1';
@@ -72,15 +98,15 @@ function init() {
     var boxcolumn4 = document.createElement("div");
     boxcolumn4.id = 'box4';
     boxcolumn4.className = 'col border border-primary'
-    boxcolumn4.onclick = xo()
+    boxcolumn4.addEventListener('click', xo);
     var boxcolumn5 = document.createElement("div");
     boxcolumn5.id = 'box5';
     boxcolumn5.className = 'col border border-primary'
-    boxcolumn5.onclick = xo()
+    boxcolumn5.addEventListener('click', xo);
     var boxcolumn6 = document.createElement("div");
     boxcolumn6.id = 'box6';
     boxcolumn6.className = 'col border border-primary'
-    boxcolumn6.onclick = xo()
+    boxcolumn6.addEventListener('click', xo);
     // row 2 of tictactoe
     var boardrow2 = document.createElement("div");
     boardrow2.id = 'boardrow2';
@@ -95,15 +121,15 @@ function init() {
     var boxcolumn7 = document.createElement("div");
     boxcolumn7.id = 'box7';
     boxcolumn7.className = 'col border border-primary';
-    boxcolumn7.onclick = xo();
+    boxcolumn7.addEventListener('click', xo);;
     var boxcolumn8 = document.createElement("div");
     boxcolumn8.id = 'box8';
     boxcolumn8.className = 'col border border-primary';
-    boxcolumn8.onclick = xo();
+    boxcolumn8.addEventListener('click', xo);;
     var boxcolumn9 = document.createElement("div");
     boxcolumn9.id = 'box9';
     boxcolumn9.className = 'col border border-primary';
-    boxcolumn9.onclick = xo();
+    boxcolumn9.addEventListener('click', xo);;
     // row 3 of tictactoe
     var boardrow3 = document.createElement("div");
     boardrow3.id = 'boardrow3';
@@ -177,6 +203,7 @@ function init() {
     startbtn.id = 'start';
     startbtn.className = 'btn btn-primary';
 
+
     //rules
     var rulesbtn = document.createElement("button");
     rulesbtn.id = 'rules';
@@ -207,7 +234,7 @@ function init() {
     // container fluid
     var Containerfluid = document.createElement("div");
     Containerfluid.id = '';
-    Containerfluid.className = 'container-fluid';
+    Containerfluid.className = 'container-fluid justify-content-center';
     Containerfluid.appendChild(bigrow)
 
 
