@@ -29,24 +29,30 @@ var xwin = 0;
 var owin = 0;
 var boxarray = [0,0,0,0,0,0,0,0,0];
 var winsconditions = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+var currentTurn = 0
 
 
 
 // xo print func
 function xo() {
-    var boxcoord = this.id.split("boxcolumn");
+    console.log('weclicked')
+    console.log(this)
+    var boxcoord = this.id.split("box");
+    console.log({boxcoord})
     var i = Number(boxcoord[1])
     var currentValue = boxarray[i];
+    console.log({currentValue, nostate})
     if (currentValue == nostate) {
         // even = x odd = o
-        turnval++;                 
+        turnval++;          
+        console.log('in outer if')       
        if (currentTurn % 2) {
-            this.innerHTML = "x";
+            this.   innerHTML = x;
             turnp.innerHTML = "O's turn!";
         boxarray[i] = xstate;
         } else {
-            this.innerHTML = "o";
-            tunp.innerHTML = "X's turn!";
+            this.innerHTML = o;
+            turnp.innerHTML = "X's turn!";
             boxarray[i] = ostate;
         }
         checkWin();
@@ -61,6 +67,41 @@ function checkwin() {
             break;
         }
     }
+}
+
+// check if players have 3-in-a-row for win
+function checkstates(indexa, indexb, indexc) {
+    if (boxarray[indexa] == nostate
+        || boxarray[indexb] == nostate
+        || boxarray[indexc] == nostate) {
+        return nostate;
+    }
+    
+    var totalval = boxarray[indexA] + boxarray[indexB] + boxarray[indexC];
+    if (totalval == (ostate * 3)) {
+        return ostate;
+    }
+
+    if (totalval == (xstate * 3)) {
+        return xstate;
+    }
+
+    // No winner
+    return nostate;
+
+
+}
+
+function reset(){
+    // Reset Layout
+    divApp.innerHTML = '';
+    vicp.innerHTML = '';
+    currentTurn = 0;
+    init();
+
+    // Rest Board
+    boxarray = [0,0,0,0,0,0,0,0,0]
+
 }
 
 function init() {
